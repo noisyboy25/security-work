@@ -14,3 +14,7 @@ export const generatePrimes = (n: number) => {
     .map((v, i) => !v && i + 1)
     .filter((v) => v);
 };
+
+export const generatePrime = (n: number) => {
+  return generatePrimes(n).pop() as number;
+};

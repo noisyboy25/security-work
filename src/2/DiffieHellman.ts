@@ -1,11 +1,9 @@
-import { generatePrimes } from './lib';
+import { generatePrime } from './lib';
 
 export default class DiffieHellman {
   g: bigint;
   p: bigint;
-  seed: bigint = BigInt(
-    generatePrimes(2 + Math.floor(Math.random() * 100000)).pop() as number
-  );
+  seed: bigint = BigInt(generatePrime(2 + Math.floor(Math.random() * 100000)));
   pub: bigint;
   secret: bigint | null = null;
 
