@@ -1,0 +1,3 @@
+class SaltedCaesar {
+  alphabet: string = '';
+}
