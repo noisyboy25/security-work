@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "1": "ts-node ./src/1/",
+    "2": "ts-node ./src/2/"
+  },
   "dependencies": {
     "@types/node": "^16.9.2",
     "ts-node": "^10.2.1",
