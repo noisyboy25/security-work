@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "1": "ts-node ./src/1/",
-    "2": "ts-node ./src/2/"
+    "2": "ts-node ./src/2/",
+    "hash": "ts-node ./src/hash",
+    "start": "ts-node ./src/2/"
   },
   "dependencies": {
     "@types/node": "^16.9.2",

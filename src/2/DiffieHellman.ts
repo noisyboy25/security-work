@@ -1,4 +1,4 @@
-import { generatePrime } from './lib';
+import { generatePrime } from '../lib';
 
 export default class DiffieHellman {
   g: bigint;
