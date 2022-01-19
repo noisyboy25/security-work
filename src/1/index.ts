@@ -1,18 +1,12 @@
-export {};
-import { CaesarModified } from './caesar-modified';
+import { CaesarKeyword } from './caesar-keyword';
 import { FrequencyAnalyser as FrequencyAnalyser } from './frequency';
 import fs from 'fs';
 import chalk from 'chalk';
 
-const DEFAULT_ALPHABET =
-  'абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz' +
-  'абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz'.toUpperCase() +
-  ` 1234567890+=-_,.?/\\|;:~!@#$%^&*()[]{}<>"'`;
-
 const test = () => {
-  const cipher = new CaesarModified({
-    alphabet: DEFAULT_ALPHABET,
-    key: 'SeCrEt',
+  const cipher = new CaesarKeyword({
+    keyword: 'SeCrEt',
+    key: 17,
   });
 
   console.log(`"${cipher.alphabet}"`);
@@ -26,16 +20,20 @@ const test = () => {
 const freqTest = () => {
   const data = fs.readFileSync('src/1/raw.txt', { encoding: 'utf8' });
 
+  const cipher = new CaesarKeyword({
+    alphabet: 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
+    keyword: 'секрет',
+    key: 17,
+  });
+
+  const encoded = cipher.encrypt(data);
+
   const analyser = new FrequencyAnalyser();
-  const freq = analyser.buildFreqString(data);
+  const freqEnc = analyser.buildFreqString(encoded);
 
-  console.log({ freq });
+  const freqDecoded = analyser.decode(encoded, freqEnc);
 
-  const decoded = analyser.decode(data, freq);
-
-  showMistakes(data, decoded);
-
-  fs.writeFileSync('src/1/res.txt', decoded);
+  showMistakes(data, freqDecoded);
 };
 
 const showMistakes = (a: string, b: string) => {

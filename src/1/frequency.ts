@@ -1,30 +1,40 @@
 export class FrequencyAnalyser {
-  freqTable: string[] = 'оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъё'.split('');
+  freqTable: string = 'оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъё';
 
-  constructor(options?: { freqTable?: string[] }) {
+  constructor(options?: { freqTable?: string }) {
     if (options) {
       this.freqTable = options.freqTable || this.freqTable;
     }
   }
 
   buildFreqString(data: string): string {
-    let freqTable = new Map<string, number>();
-    data.split('').forEach((ch) => {
-      if (this.freqTable.indexOf(ch) < 0) return;
-      return freqTable.set(ch, (freqTable.get(ch) || 0) + 1);
+    let freqMap = new Map<string, number>();
+    this.freqTable.split('').forEach((ch) => {
+      freqMap.set(ch, 0);
     });
-    freqTable = new Map<string, number>(
-      [...freqTable.entries()].sort((a, b) => b[1] - a[1])
+    data.split('').forEach((ch) => {
+      // if (this.freqList.indexOf(ch) < 0) return;
+      return freqMap.set(ch, freqMap.get(ch)! + 1);
+    });
+    freqMap = new Map<string, number>(
+      [...freqMap.entries()].sort((a, b) => b[1] - a[1])
     );
-    return Array.from(freqTable.keys()).join('');
+    return Array.from(freqMap.keys()).join('');
   }
 
   decode(data: string, freqString: string): string {
+    console.log(`freqTab: ${this.freqTable}`);
+    console.log(`freqStr: ${freqString}`);
+
     return data
       .split('')
       .map((ch) => {
-        if (freqString.indexOf(ch) < 0) return ch;
-        return this.freqTable[freqString.indexOf(ch)];
+        if (this.freqTable.indexOf(ch) < 0) return ch;
+        // console.log(
+        // `${ch} -> ${freqString.charAt(this.freqTable.indexOf(ch))}`
+        // );
+
+        return freqString.charAt(this.freqTable.indexOf(ch));
       })
       .join('');
   }
