@@ -1,6 +1,8 @@
+export {};
 import { CaesarModified } from './caesar-modified';
 import { FrequencyAnalyser as FrequencyAnalyser } from './frequency';
 import fs from 'fs';
+import chalk from 'chalk';
 
 const DEFAULT_ALPHABET =
   'абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz' +
@@ -31,8 +33,20 @@ const freqTest = () => {
 
   const decoded = analyser.decode(data, freq);
 
-  console.log(decoded);
+  showMistakes(data, decoded);
+
   fs.writeFileSync('src/1/res.txt', decoded);
+};
+
+const showMistakes = (a: string, b: string) => {
+  const out = b
+    .split('')
+    .map((ch, i) => {
+      if (ch === a.charAt(i)) return ch;
+      else return chalk.red(ch);
+    })
+    .join('');
+  console.log(out);
 };
 
 test();
