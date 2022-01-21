@@ -7,15 +7,12 @@ export class FrequencyAnalyser {
     }
   }
 
-  buildFreqString(data: string): string {
+  static buildFreqString(data: string): string {
     let freqMap = new Map<string, number>();
-    this.freqTable.split('').forEach((ch) => {
-      freqMap.set(ch, 0);
-    });
     data.split('').forEach((ch) => {
-      // if (this.freqList.indexOf(ch) < 0) return;
-      return freqMap.set(ch, freqMap.get(ch)! + 1);
+      return freqMap.set(ch, (freqMap.get(ch) || 0) + 1);
     });
+
     freqMap = new Map<string, number>(
       [...freqMap.entries()].sort((a, b) => b[1] - a[1])
     );
@@ -23,17 +20,10 @@ export class FrequencyAnalyser {
   }
 
   decode(data: string, freqString: string): string {
-    console.log(`freqTab: ${this.freqTable}`);
-    console.log(`freqStr: ${freqString}`);
-
     return data
       .split('')
       .map((ch) => {
         if (this.freqTable.indexOf(ch) < 0) return ch;
-        // console.log(
-        // `${ch} -> ${freqString.charAt(this.freqTable.indexOf(ch))}`
-        // );
-
         return freqString.charAt(this.freqTable.indexOf(ch));
       })
       .join('');
