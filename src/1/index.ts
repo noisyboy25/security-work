@@ -27,22 +27,18 @@ const freqTest = () => {
   });
 
   const encoded = cipher.encrypt(raw);
-  console.log(encoded);
+  fs.writeFileSync('src/1/enc.txt', encoded);
 
-  // const freqRaw = FrequencyAnalyser.buildFreqString(raw);
-  // const freqEnc = FrequencyAnalyser.buildFreqString(encoded);
-  // const analyser = new FrequencyAnalyser({ freqTable: freqRaw });
+  const freqRaw = FrequencyAnalyser.buildFreqString(raw);
+  const freqEnc = FrequencyAnalyser.buildFreqString(encoded);
+  const analyser = new FrequencyAnalyser({ freqTable: freqRaw });
 
-  // console.log(freqRaw.length);
-  // console.log(freqEnc.length);
-  // console.log(analyser.freqTable.length);
+  console.log(freqRaw);
+  console.log(freqEnc);
 
-  // const decodedWithFreq = analyser.decode(encoded, freqEnc);
-  // console.log(raw.length);
-  // console.log(encoded.length);
-  // console.log(decodedWithFreq.length);
+  const decodedWithFreq = analyser.decode(encoded, freqEnc);
 
-  // showMistakes(raw, decodedWithFreq);
+  showMistakes(raw, decodedWithFreq);
 };
 
 const showMistakes = (a: string, b: string) => {
