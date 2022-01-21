@@ -13,7 +13,7 @@ export default class DiffieHellman {
     this.pub = this.g ** this.seed % this.p;
   }
 
-  generateSecret(pub: bigint): void {
+  generateSecret(pub: bigint) {
     this.secret = pub ** this.seed % this.p;
   }
 }

@@ -1,9 +1,10 @@
 export class FrequencyAnalyser {
-  freqTable: string = 'оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъё';
+  freqTable: string[] = 'оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъё'.split('');
 
   constructor(options?: { freqTable?: string }) {
     if (options) {
-      this.freqTable = options.freqTable || this.freqTable;
+      if (options.freqTable)
+        this.freqTable = options.freqTable.split('') || this.freqTable;
     }
   }
 

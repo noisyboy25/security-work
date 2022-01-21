@@ -1,4 +1,4 @@
-import DiffieHellman from './DiffieHellman';
+import DiffieHellman from './diffie-hellman';
 
 const main = () => {
   const g = 5;
