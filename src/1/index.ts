@@ -21,27 +21,28 @@ const freqTest = () => {
   const raw = fs.readFileSync('src/1/raw.txt', { encoding: 'utf8' });
 
   const cipher = new CaesarKeyword({
-    alphabet: 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
+    // alphabet: 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
     keyword: 'секрет',
     key: 17,
   });
 
   const encoded = cipher.encrypt(raw);
+  console.log(encoded);
 
-  const freqRaw = FrequencyAnalyser.buildFreqString(raw);
-  const freqEnc = FrequencyAnalyser.buildFreqString(encoded);
-  const analyser = new FrequencyAnalyser({ freqTable: freqRaw });
+  // const freqRaw = FrequencyAnalyser.buildFreqString(raw);
+  // const freqEnc = FrequencyAnalyser.buildFreqString(encoded);
+  // const analyser = new FrequencyAnalyser({ freqTable: freqRaw });
 
   // console.log(freqRaw.length);
   // console.log(freqEnc.length);
   // console.log(analyser.freqTable.length);
 
-  const decodedWithFreq = analyser.decode(encoded, freqEnc);
+  // const decodedWithFreq = analyser.decode(encoded, freqEnc);
   // console.log(raw.length);
   // console.log(encoded.length);
   // console.log(decodedWithFreq.length);
 
-  showMistakes(raw, decodedWithFreq);
+  // showMistakes(raw, decodedWithFreq);
 };
 
 const showMistakes = (a: string, b: string) => {
