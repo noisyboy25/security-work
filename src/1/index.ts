@@ -32,16 +32,16 @@ const freqTest = () => {
   const freqEnc = FrequencyAnalyser.buildFreqString(encoded);
   const analyser = new FrequencyAnalyser({ freqTable: freqRaw });
 
-  console.log(freqRaw.length);
-  console.log(freqEnc.length);
-  console.log(analyser.freqTable.length);
+  // console.log(freqRaw.length);
+  // console.log(freqEnc.length);
+  // console.log(analyser.freqTable.length);
 
   const decodedWithFreq = analyser.decode(encoded, freqEnc);
-  console.log(raw.length);
-  console.log(encoded.length);
-  console.log(decodedWithFreq.length);
+  // console.log(raw.length);
+  // console.log(encoded.length);
+  // console.log(decodedWithFreq.length);
 
-  // showMistakes(raw, decodedWithFreq);
+  showMistakes(raw, decodedWithFreq);
 };
 
 const showMistakes = (a: string, b: string) => {
